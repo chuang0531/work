@@ -709,24 +709,23 @@
         function readArticle(articleId, url) {
             console.log(`Attempting to read article: ${articleId}, URL: ${url}`);
             
-            if (!userData.readArticles.includes(articleId)) {
-                userData.points += 5;
-                userData.readArticles.push(articleId);
-                saveToLocalStorage();
-                updateStats();
-                alert(`閱讀成功！獲得 5 積分，目前總積分：${userData.points}`);
-            }
-            
             const confirmed = confirm('即將前往外部網站閱讀文章，是否繼續？');
             if (confirmed) {
                 console.log(`Opening URL: ${url}`);
-                setTimeout(() => {
-                    const newWindow = window.open(url, '_blank');
-                    if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-                        console.error('Window was blocked or failed to open');
-                        alert('無法開啟外部網站，請檢查瀏覽器彈窗設定！');
+                const newWindow = window.open(url, '_blank');
+                if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                    console.error('Window was blocked or failed to open');
+                    alert('無法開啟外部網站，請檢查瀏覽器彈窗設定並允許彈窗！');
+                } else {
+                    // 只有在成功開啟新分頁後才處理積分
+                    if (!userData.readArticles.includes(articleId)) {
+                        userData.points += 5;
+                        userData.readArticles.push(articleId);
+                        saveToLocalStorage();
+                        updateStats();
+                        alert(`閱讀成功！獲得 5 積分，目前總積分：${userData.points}`);
                     }
-                }, 100);
+                }
             } else {
                 console.log('User cancelled navigation');
             }
