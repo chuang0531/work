@@ -226,11 +226,44 @@
                     <label for="itemType">選擇項目:</label>
                     <select id="itemType" required>
                         <option value="">請選擇項目</option>
+                        <!-- 紙製品 -->
                         <option value="cup">紙杯</option>
+                        <option value="paperBox">紙盒（包裝盒）</option>
+                        <option value="paperBowl">紙碗</option>
+                        <option value="paperPlate">紙餐盤</option>
+                        <option value="paperTakeoutBox">紙餐盒</option>
+                        <option value="paperBag">紙袋（購物用）</option>
+                        <option value="packingPaper">包裝紙（單張牛皮紙）</option>
+                        <option value="cardboardBox">紙箱（小型運輸用）</option>
+                        <!-- 塑膠製品 -->
                         <option value="bag">塑膠袋</option>
                         <option value="spoon">塑膠湯匙</option>
-                        <option value="bottle">寶特瓶</option>
                         <option value="straw">塑膠吸管</option>
+                        <option value="toothbrush">牙刷（塑膠柄）</option>
+                        <option value="cottonSwab">棉花棒（塑膠柄）</option>
+                        <option value="razor">刮鬍刀（一次性塑膠）</option>
+                        <option value="showerCap">浴帽（一次性塑膠）</option>
+                        <option value="plasticFork">塑膠叉子</option>
+                        <option value="plasticKnife">塑膠刀子</option>
+                        <option value="plasticTakeoutBox">塑膠盒（外帶盒）</option>
+                        <option value="plasticCup">塑膠杯（一次性）</option>
+                        <option value="plasticBowl">塑膠碗</option>
+                        <option value="plasticFreshBox">保鮮盒（一次性）</option>
+                        <option value="plasticDrinkCupLid">飲料杯蓋（塑膠）</option>
+                        <option value="plasticFoodBox">便當盒（一次性塑膠）</option>
+                        <option value="plasticSlippers">拖鞋（一次性塑膠或 EVA）</option>
+                        <option value="plasticRaincoat">雨衣（一次性塑膠）</option>
+                        <!-- 其他 -->
+                        <option value="bottle">寶特瓶</option>
+                        <option value="toothpaste">牙膏（小份量，10 克）</option>
+                        <option value="comb">梳子（塑膠製）</option>
+                        <option value="shampoo">洗髮精（小包裝，10 毫升）</option>
+                        <option value="conditioner">潤髮乳（小包裝，10 毫升）</option>
+                        <option value="bodyWash">沐浴乳（小包裝，10 毫升）</option>
+                        <option value="lotion">乳液（小包裝，10 毫升）</option>
+                        <option value="toiletPaper">衛生紙（每捲，100 克）</option>
+                        <option value="mask">口罩（一次性醫用）</option>
+                        <option value="instantNoodleBowl">泡麵碗（保麗龍）</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -410,13 +443,29 @@
         });
         
         const carbonData = {
-            'cup': 0.01, 'bag': 0.006, 'spoon': 0.005, 'bottle': 0.08, 'straw': 0.0005
+            'cup': 0.01, 'bag': 0.006, 'spoon': 0.005, 'bottle': 0.08, 'straw': 0.0005,
+            'shampoo': 0.015, 'conditioner': 0.015, 'bodyWash': 0.015, 'lotion': 0.015,
+            'showerCap': 0.02, 'toiletPaper': 0.225, 'cottonSwab': 0.0015, 'mask': 0.035,
+            'plasticFork': 0.03, 'plasticKnife': 0.03, 'instantNoodleBowl': 0.075, 'paperBox': 0.035,
+            'paperBowl': 0.03, 'paperPlate': 0.035, 'paperTakeoutBox': 0.045, 'plasticTakeoutBox': 0.075,
+            'plasticCup': 0.045, 'plasticBowl': 0.06, 'toothpaste': 0.03, 'plasticFreshBox': 0.075,
+            'plasticDrinkCupLid': 0.02, 'plasticFoodBox': 0.115, 'plasticSlippers': 0.075, 
+            'plasticRaincoat': 0.075, 'plasticFoodWrap': 0.075, 'paperBag': 0.055, 'packingPaper': 0.01, 
+            'cardboardBox': 0.35, 'toothbrush': 0.045, 'razor': 0.045, 'comb': 0.03
         };
-        
         const itemNames = {
-            'cup': '紙杯', 'bag': '塑膠袋', 'spoon': '塑膠湯匙', 'bottle': '寶特瓶', 'straw': '塑膠吸管'
+            'cup': '紙杯', 'bag': '塑膠袋', 'spoon': '塑膠湯匙', 'bottle': '寶特瓶', 'straw': '塑膠吸管',
+            'shampoo': '洗髮精（小包裝，10 毫升）', 'conditioner': '潤髮乳（小包裝，10 毫升）', 'bodyWash': '沐浴乳（小包裝，10 毫升）', 'lotion': '乳液（小包裝，10 毫升）',
+            'showerCap': '浴帽（一次性塑膠）', 'toiletPaper': '衛生紙（每捲，100 克）', 'cottonSwab': '棉花棒（塑膠柄）', 'mask': '口罩（一次性醫用）',
+            'plasticFork': '塑膠叉子', 'plasticKnife': '塑膠刀子', 'instantNoodleBowl': '泡麵碗（保麗龍）', 'paperBox': '紙盒（包裝盒）',
+            'paperBowl': '紙碗', 'paperPlate': '紙餐盤', 'paperTakeoutBox': '紙餐盒', 'plasticTakeoutBox': '塑膠盒（外帶盒）',
+            'plasticCup': '塑膠杯（一次性）', 'plasticBowl': '塑膠碗', 'toothpaste': '牙膏（小份量，10 克）',
+            'plasticFreshBox': '保鮮盒（一次性）', 'plasticDrinkCupLid': '飲料杯蓋（塑膠）', 'plasticFoodBox': '便當盒（一次性塑膠）',
+            'plasticSlippers': '拖鞋（一次性塑膠或 EVA）', 'plasticRaincoat': '雨衣（一次性塑膠）', 'plasticFoodWrap': '食物包裝膜（鋁箔，1 平方米）',
+            'paperBag': '紙袋（購物用）', 'packingPaper': '包裝紙（單張牛皮紙）', 'cardboardBox': '紙箱（小型運輸用）',
+            'toothbrush': '牙刷（塑膠柄）', 'razor': '刮鬍刀（一次性塑膠）', 'comb': '梳子（塑膠製）'
         };
-        
+
         const plants = {
             'apple-tree': { name: '蘋果樹', icon: '🍎', description: '每年可吸收約20kg二氧化碳' },
             'oak-tree': { name: '橡樹', icon: '🌳', description: '每年可吸收約40kg二氧化碳' },
@@ -707,27 +756,27 @@
         }
         
         function readArticle(articleId, url) {
-            console.log(`Attempting to read article: ${articleId}, URL: ${url}`);
-            
+            console.log(`嘗試閱讀文章: ${articleId}, URL: ${url}`);
+
+            // 檢查是否首次閱讀，若是則增加積分
+            if (!userData.readArticles.includes(articleId)) {
+                userData.points += 5;
+                userData.readArticles.push(articleId);
+                saveToLocalStorage();
+                updateStats();
+                alert(`閱讀成功！獲得 5 積分，目前總積分：${userData.points}`);
+            }
+
+            // 直接跳轉到外部連結，避免彈窗攔截問題
             const confirmed = confirm('即將前往外部網站閱讀文章，是否繼續？');
             if (confirmed) {
-                console.log(`Opening URL: ${url}`);
+                console.log(`正在開啟 URL: ${url}`);
                 const newWindow = window.open(url, '_blank');
-                if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-                    console.error('Window was blocked or failed to open');
-                    alert('無法開啟外部網站，請檢查瀏覽器彈窗設定並允許彈窗！');
-                } else {
-                    // 只有在成功開啟新分頁後才處理積分
-                    if (!userData.readArticles.includes(articleId)) {
-                        userData.points += 5;
-                        userData.readArticles.push(articleId);
-                        saveToLocalStorage();
-                        updateStats();
-                        alert(`閱讀成功！獲得 5 積分，目前總積分：${userData.points}`);
-                    }
+                if (!newWindow) {
+                    alert('無法開啟連結，請檢查瀏覽器設定或網路連線！');
                 }
             } else {
-                console.log('User cancelled navigation');
+                console.log('使用者取消跳轉');
             }
         }
         
